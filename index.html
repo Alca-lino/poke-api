@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PokéDeck — Cliente PokéAPI</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar-title">
+            <h1>PokéDeck</h1>
+            <span class="subtitle">Cliente multi-carril PokéAPI</span>
+        </div>
+        <button id="btn-open-modal" class="btn btn-primary" type="button">+ Añadir carril</button>
+    </header>
+
+    <main id="lanes-container" class="lanes-board" aria-live="polite"></main>
+
+    <!-- Modal para añadir un nuevo carril -->
+    <div id="add-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2 id="modal-title">Añadir carril por tipo</h2>
+                <button id="btn-close-modal" class="btn-icon" type="button" aria-label="Cerrar">&times;</button>
+            </div>
+            <form id="add-lane-form" class="modal-body">
+                <label for="type-input" class="field-label">Nombre del tipo (en inglés)</label>
+                <input id="type-input" type="text" class="text-input" placeholder="Ej. ghost, dragon, steel, psychic..."
+                    autocomplete="off" required />
+                <div class="quick-tags" id="quick-tags"></div>
+                <p id="form-error" class="error-text hidden" role="alert"></p>
+                <div class="modal-actions">
+                    <button id="btn-cancel-modal" class="btn btn-secondary" type="button">Cancelar</button>
+                    <button id="btn-submit-lane" class="btn btn-primary" type="submit">Añadir</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de detalle del Pokémon -->
+    <div id="detail-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="detail-name">
+        <div class="modal-card detail-card">
+            <div class="modal-header">
+                <div>
+                    <span id="detail-id" class="mono-muted">#000</span>
+                    <h2 id="detail-name">Pokémon</h2>
+                </div>
+                <button id="btn-close-detail" class="btn-icon" type="button" aria-label="Cerrar">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-hero">
+                    <img id="detail-img" src="" alt="" />
+                    <div class="detail-meta">
+                        <div id="detail-types" class="badge-row"></div>
+                        <p id="detail-physical" class="meta-line"></p>
+                        <p id="detail-abilities" class="meta-line"></p>
+                    </div>
+                </div>
+                <div id="detail-stats" class="stats-list"></div>
+                <div class="modal-actions">
+                    <a id="detail-json-link" href="#" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-secondary">Ver JSON en PokéAPI</a>
+                    <button id="btn-ok-detail" class="btn btn-primary" type="button">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
